@@ -113,7 +113,7 @@ domainHomeImageBase: container-registry.oracle.com/middleware/weblogic:12.2.1.4
 ###
 ## The original one is like ⇒ image: "domain-home-in-image:12.2.1.4"
 ## Recreate the domain
-You can see the sample domain.yaml under mydomain <br/>
+You can see the sample ```domain.yaml``` under the mydomain <br/>
 ```
 oc delete -f outputs/weblogic-domains/sample-domain1/domain.yaml
 oc apply -f outputs/weblogic-domains/sample-domain1/domain.yaml
