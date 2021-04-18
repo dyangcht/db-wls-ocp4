@@ -3,9 +3,9 @@ oc new-project database-namespace
 # Prepare pull image secrets
 oc create secret docker-registry regsecret \
     --docker-server=container-registry.oracle.com \
-    --docker-username='yangorcl@gmail.com' \
-    --docker-password='Pass!@#w0rd' \
-    --docker-email='yangorcl@gmail.com'
+    --docker-username='yourname@gmail.com' \
+    --docker-password='Password' \
+    --docker-email='yourname@gmail.com'
 
 # working directory /Users/dyangcht/tmp/weblogic-kubernetes-operator/kubernetes/samples/scripts/create-weblogic-domain/domain-home-in-image
 # Create a db instance
