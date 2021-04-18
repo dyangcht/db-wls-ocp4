@@ -12,7 +12,9 @@ oc create secret docker-registry regsecret \
 ```
 <br/>
 ## Create a db instance
-``` oc create -f db.yaml ```
+```
+oc create -f db.yaml
+```
 
 ## Expose svc to public
 ``` oc expose rs database-bddb98bfb --port=1521 --type=LoadBalancer ```
