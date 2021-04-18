@@ -159,5 +159,6 @@ CMD ["startAdminServer.sh"]
 $INSTALLED_DIR/SQLDeveloper.app/Contents/Resources/sqldeveloper/sqldeveloper/bin/sqldeveloper
 
 ### RHPDS information
-DB URL: a99cafa9ac3c2427f8f0ff910b4cbe2b-549459842.us-east-2.elb.amazonaws.com
-DB SID: OraDoc
+
+DB URL: a99cafa9ac3c2427f8f0ff910b4cbe2b-549459842.us-east-2.elb.amazonaws.com <br/>
+DB SID: OraDoc <br/>
