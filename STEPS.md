@@ -154,3 +154,10 @@ CMD ["startAdminServer.sh"]
 ### Admin Console URL
 ``` http://sample-domain1-admin-server-sample-domain1-ns.apps.cluster-050a.sandbox1092.opentlc.com/console/ ```
 
+
+### Run SQLDeveloper on the MacOS
+$INSTALLED_DIR/SQLDeveloper.app/Contents/Resources/sqldeveloper/sqldeveloper/bin/sqldeveloper
+
+### RHPDS information
+DB URL: a99cafa9ac3c2427f8f0ff910b4cbe2b-549459842.us-east-2.elb.amazonaws.com
+DB SID: OraDoc
