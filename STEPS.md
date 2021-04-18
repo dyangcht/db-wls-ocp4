@@ -184,4 +184,5 @@ oc set env dc/apicast-staging OPENTRACING_TRACER=jaeger OPENTRACING_CONFIG=/tmp/
 
 ### Reference
 https://itnext.io/adding-opentracing-support-to-apicast-api-gateway-a8e0a38347d2
+http://jaeger-query-threescale-1ff4.apps.shared-na4.na4.openshift.opentlc.com/search
 
