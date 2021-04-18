@@ -1,0 +1,34 @@
+# Copyright (c) 2018, 2021, Oracle and/or its affiliates.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  name: traefik-hostrouting-1
+  namespace: weblogic-domain1
+spec:
+  routes:
+  - kind: Rule
+    match: Host(`domain1.org`)
+    services:
+    - kind: Service
+      name: domain1-cluster-cluster-1
+      port: 8001
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  name: traefik-hostrouting-2
+  namespace: weblogic-domain2
+spec:
+  routes:
+  - kind: Rule
+    match: Host(`domain2.org`)
+    services:
+    - kind: Service
+      name: domain2-cluster-cluster-1
+      port: 8001
