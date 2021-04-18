@@ -163,3 +163,22 @@ $INSTALLED_DIR/SQLDeveloper.app/Contents/Resources/sqldeveloper/sqldeveloper/bin
 
 DB URL: a99cafa9ac3c2427f8f0ff910b4cbe2b-549459842.us-east-2.elb.amazonaws.com <br/>
 DB SID: OraDoc <br/>
+
+## OpenTracing and Jaeger
+
+```
+wget https://raw.githubusercontent.com/jaegertracing/jaeger-openshift/master/all-in-one/jaeger-all-in-one-template.yml
+```
+Change some values like Deployment's version and selector
+```
+vi jaeger-all-in-one-template.yml
+```
+Apply it
+```
+oc process -f jaeger-all-in-one-template.yml| oc create -f -
+oc project threescale-1ff4
+oc create configmap jaeger-config --from-file=jaeger_config.json
+oc set volume dc/apicast-staging --add -m /tmp/jaeger/ --configmap-name jaeger-config
+oc set env dc/apicast-staging OPENTRACING_TRACER=jaeger OPENTRACING_CONFIG=/tmp/jaeger/jaeger_config.json
+```
+
