@@ -10,7 +10,7 @@ oc create secret docker-registry regsecret \
     --docker-password='Password' \
     --docker-email='yourname@gmail.com'
 ```
-The working directory /Users/dyangcht/tmp/weblogic-kubernetes-operator/kubernetes/samples/scripts/create-weblogic-domain/domain-home-in-image <br/>
+<br/>
 ## Create a db instance
 ``` oc create -f db.yaml ```
 
