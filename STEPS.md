@@ -10,7 +10,6 @@ oc create secret docker-registry regsecret \
     --docker-password='Password' \
     --docker-email='yourname@gmail.com'
 ```
-<br/>
 ## Create a db instance
 ```
 oc create -f db.yaml
