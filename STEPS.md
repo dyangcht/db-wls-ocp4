@@ -80,7 +80,7 @@ NAME                                READY   STATUS    RESTARTS   AGE
 weblogic-operator-b86b89c75-jzpb4   1/1     Running   0          76s
 ```
 
-## Create a namespace for weblog domain
+## Create a namespace for weblogic domain
 ```
 kubectl create namespace sample-domain1-ns
 kubectl label ns sample-domain1-ns weblogic-operator=enabled
