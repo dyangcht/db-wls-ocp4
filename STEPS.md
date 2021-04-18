@@ -44,8 +44,10 @@ git clone --branch v3.2.1 https://github.com/oracle/weblogic-kubernetes-operator
 cd weblogic-kubernetes-operator
 ```
 ## don’t need to pull images to local
-docker pull ghcr.io/oracle/weblogic-kubernetes-operator:3.2.1
-docker pull container-registry.oracle.com/middleware/weblogic:12.2.1.4
+<p>
+docker pull ghcr.io/oracle/weblogic-kubernetes-operator:3.2.1 <br/>
+docker pull container-registry.oracle.com/middleware/weblogic:12.2.1.4 <br/>
+</p>
 ```
 kubectl create namespace sample-weblogic-operator-ns
 kubectl create serviceaccount -n sample-weblogic-operator-ns sample-weblogic-operator-sa
