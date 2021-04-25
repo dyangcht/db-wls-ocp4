@@ -99,7 +99,8 @@ weblogic-operator-b86b89c75-jzpb4   1/1     Running   0          76s
 
 ## Create a namespace for weblogic domain
 ```
-kubectl create namespace sample-domain1-ns
+# kubectl create namespace sample-domain1-ns
+oc new-project sample-domain1-ns
 kubectl label ns sample-domain1-ns weblogic-operator=enabled
 ```
 ## Create a secret for the weblogic admin
@@ -121,6 +122,7 @@ namespace: sample-domain1-ns
 domainHomeImageBase: container-registry.oracle.com/middleware/weblogic:12.2.1.4
 ```
 ## Create a domain
+Before run it make sure the dockerd is running. It creates an image "domain-home-in-image:12.2.1.4"
 ``` ./create-domain.sh -i myinputs.yaml -o output -u weblogic -p welcome1 -e ```
 ## Cannot startup normally
 ## Edit the domain.yaml  -- put it under mydomain/domain.yaml
