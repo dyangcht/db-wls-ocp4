@@ -139,8 +139,10 @@ oc apply -f outputs/weblogic-domains/sample-domain1/domain.yaml
 ```
 ## Put an application in WLS domain
 ```
+cd weblogic-kubernetes-operator/mydomain/hrapp2/deploy
 jar -cvf archive.zip hrapp2.ear
 docker build --build-arg APPLICATION_NAME=hrapp2 --build-arg APPLICATION_PKG=archive.zip -t dyangcht/12213-domain-with-app:v1.1 .
+docker push dyangcht/12213-domain-with-app:v1.1
 ```
 
 ### Dockerfile
