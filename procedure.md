@@ -67,8 +67,10 @@ docker pull container-registry.oracle.com/middleware/weblogic:12.2.1.4 <br/>
 
 
 ```
-kubectl create namespace sample-weblogic-operator-ns
-kubectl create serviceaccount -n sample-weblogic-operator-ns sample-weblogic-operator-sa
+# kubectl create namespace sample-weblogic-operator-ns
+# kubectl create serviceaccount -n sample-weblogic-operator-ns sample-weblogic-operator-sa
+oc new-project sample-weblogic-operator-ns
+oc create serviceaccount -n sample-weblogic-operator-ns sample-weblogic-operator-sa
 helm install sample-weblogic-operator kubernetes/charts/weblogic-operator \
   --namespace sample-weblogic-operator-ns \
   --set image=ghcr.io/oracle/weblogic-kubernetes-operator:3.2.1 \
@@ -89,7 +91,7 @@ TEST SUITE: None
 ```
 ### Checking status
 ```
-kubectl get pods -n sample-weblogic-operator-ns
+oc get pods -n sample-weblogic-operator-ns
 ```
 ### Response
 ```
@@ -101,7 +103,7 @@ weblogic-operator-b86b89c75-jzpb4   1/1     Running   0          76s
 ```
 # kubectl create namespace sample-domain1-ns
 oc new-project sample-domain1-ns
-kubectl label ns sample-domain1-ns weblogic-operator=enabled
+oc label ns sample-domain1-ns weblogic-operator=enabled
 ```
 ## Create a secret for the weblogic admin
 ```
