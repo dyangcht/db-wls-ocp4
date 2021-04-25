@@ -34,7 +34,7 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
-            memory: 2Gi
+            memory: 8Gi
         ports:
         - containerPort: 1521
           #hostPort: 1521
@@ -54,7 +54,7 @@ spec:
           - name: DB_BUNDLE
             value: basic
           - name: DB_MEMORY
-            value: 2g
+            value: 8g
       imagePullSecrets:
       - name: regsecret
 ---
