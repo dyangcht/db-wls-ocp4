@@ -12,11 +12,26 @@ oc create secret docker-registry regsecret \
 ```
 ## Create a db instance
 ```
-oc create -f db.yaml
+cd database
+# oc create user orcl
+# oc adm policy add-scc-to-user anyuid orcl
+oc adm policy add-scc-to-user anyuid -z default
+oc create -f db.yaml --as=orcl
 ```
 
 ## Expose svc to public
-``` oc expose rs database-bddb98bfb --port=1521 --type=LoadBalancer ```
+```
+oc get rs
+oc expose rs database-<bddb98bfb> --port=1521 --type=LoadBalancer
+```
+Get the Load balancer
+```
+oc get svc
+```
+Forward the port to local port, 1521(local/from):1521(remote/to)
+```
+oc port-forward pod/database-58884bccbd-42j5f 1521:1521
+```
 
 ## Internal database service name
 ``` database.database-namespace.svc.cluster.local:1521 ```
@@ -28,6 +43,8 @@ sql> create user c##hr identified by Welcome#1;
 sql> grant resource,connect to c##hr;
 sql> ALTER USER c##hr quota unlimited on USERS;
 ```
+Log into the DB using the new user you just created "c##hr"
+
 ## Run hr_30.sql under Downloads/RedHat
 ``` sql> @database/HR_30.sql ```
 ## Insert data
