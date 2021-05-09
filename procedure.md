@@ -15,8 +15,10 @@ oc create secret docker-registry regsecret \
 cd database
 # oc create user orcl
 # oc adm policy add-scc-to-user anyuid orcl
+# oc create -f db.yaml --as=orcl
 oc adm policy add-scc-to-user anyuid -z default
-oc create -f db.yaml --as=orcl
+oc create -f db.yaml
+# Take > 10 mins if you're using OVN
 ```
 
 ## Expose svc to public
