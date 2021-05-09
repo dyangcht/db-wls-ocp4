@@ -110,8 +110,14 @@ oc label ns sample-domain1-ns weblogic-operator=enabled
 ```
 ## Create a secret for the weblogic admin
 ```
-kubernetes/samples/scripts/create-weblogic-domain-credentials/create-weblogic-credentials.sh \
+$ kubernetes/samples/scripts/create-weblogic-domain-credentials/create-weblogic-credentials.sh \
   -u weblogic -p welcome1 -n sample-domain1-ns -d sample-domain1
+$ oc get secret sample-domain1-weblogic-credentials
+```
+## Response
+```
+NAME                                  TYPE     DATA   AGE
+sample-domain1-weblogic-credentials   Opaque   2      48s
 ```
 ## Prepare a create script
 ```
@@ -138,10 +144,49 @@ Before run it make sure the dockerd is running. It creates an image "domain-home
 ## The original one is like ⇒ image: "domain-home-in-image:12.2.1.4"
 ## Recreate the domain
 You can see the sample ```domain.yaml``` under the mydomain <br/>
+You can apply it directly if your namespaces are the same as the document <br/>
 ```
 oc delete -f outputs/weblogic-domains/sample-domain1/domain.yaml
 oc apply -f outputs/weblogic-domains/sample-domain1/domain.yaml
 ```
+## Response snippet
+```
+NAME                                READY   STATUS              RESTARTS   AGE
+sample-domain1-introspector-dsw5j   0/1     ContainerCreating   0          24s
+sample-domain1-introspector-dsw5j   1/1     Running             0          46s
+sample-domain1-introspector-dsw5j   0/1     Completed           0          58s
+sample-domain1-introspector-dsw5j   0/1     Terminating         0          58s
+sample-domain1-introspector-dsw5j   0/1     Terminating         0          58s
+sample-domain1-admin-server         0/1     Pending             0          0s
+sample-domain1-admin-server         0/1     Pending             0          0s
+sample-domain1-admin-server         0/1     Pending             0          0s
+sample-domain1-admin-server         0/1     ContainerCreating   0          0s
+sample-domain1-admin-server         0/1     ContainerCreating   0          2s
+sample-domain1-admin-server         0/1     Running             0          45s
+sample-domain1-admin-server         1/1     Running             0          75s
+sample-domain1-managed-server1      0/1     Pending             0          0s
+sample-domain1-managed-server1      0/1     Pending             0          0s
+sample-domain1-managed-server1      0/1     ContainerCreating   0          0s
+sample-domain1-managed-server1      0/1     ContainerCreating   0          0s
+sample-domain1-managed-server2      0/1     Pending             0          0s
+sample-domain1-managed-server2      0/1     Pending             0          0s
+sample-domain1-managed-server2      0/1     Pending             0          0s
+...
+```
+<p/>
+### Checking WebLogic Services
+```
+$ oc get svc -n sample-domain1-ns
+```
+### Reponse
+```
+NAME                               TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)              AGE
+sample-domain1-admin-server        ClusterIP   None             <none>        30012/TCP,7001/TCP   3m32s
+sample-domain1-cluster-cluster-1   ClusterIP   172.30.114.136   <none>        8001/TCP             2m17s
+sample-domain1-managed-server1     ClusterIP   None             <none>        8001/TCP             2m17s
+sample-domain1-managed-server2     ClusterIP   None             <none>        8001/TCP             2m17s
+```
+<p/>
 ## Put an application in WLS domain
 ```
 cd weblogic-kubernetes-operator/mydomain/hrapp2/deploy
