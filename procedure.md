@@ -171,13 +171,14 @@ sample-domain1-managed-server1      0/1     ContainerCreating   0          0s
 sample-domain1-managed-server2      0/1     Pending             0          0s
 sample-domain1-managed-server2      0/1     Pending             0          0s
 sample-domain1-managed-server2      0/1     Pending             0          0s
-...
 ```
 <p/>
+
 ### Checking WebLogic Services
 ```
 $ oc get svc -n sample-domain1-ns
 ```
+
 ### Reponse
 ```
 NAME                               TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)              AGE
@@ -186,7 +187,13 @@ sample-domain1-cluster-cluster-1   ClusterIP   172.30.114.136   <none>        80
 sample-domain1-managed-server1     ClusterIP   None             <none>        8001/TCP             2m17s
 sample-domain1-managed-server2     ClusterIP   None             <none>        8001/TCP             2m17s
 ```
+### Expose cluster services
+```
+$ oc expose svc sample-domain1-cluster-cluster-1
+```
+
 <p/>
+
 ## Put an application in WLS domain
 ```
 cd weblogic-kubernetes-operator/mydomain/hrapp2/deploy
